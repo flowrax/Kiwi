@@ -3,29 +3,43 @@ body, html {
     padding: 0;
     width: 100%;
     height: 100%;
-    font-family: Arial, sans-serif;
+    font-family: Calibri Light, Calibri Light;
 }
 
 header {
     position: relative;
     text-align: center;
     color: white;
+    background: linear-gradient(rgba(0, 255, 0, 0.5), rgba(0, 0, 0, 0.5)), url('background-image.jpg') no-repeat center center/cover;
 }
 
-.logo-background {
+.background-logo {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    opacity: 0.1; /* Adjust the opacity for the blurred effect */
+    opacity: 0.5; /* Adjust the opacity for the blurred effect */
     z-index: 1;
 }
 
-.logo-background img {
+.background-logo img {
     width: 100%;
     height: auto;
     filter: blur(10px); /* Apply blur effect */
+}
+
+.logo {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 200px; /* Adjust the size to 10% of the original size */
+    z-index: 2;
+}
+
+.logo img {
+    width: 100%;
+    height: auto;
 }
 
 .title {
@@ -45,7 +59,7 @@ nav ul {
     justify-content: center;
     margin: 0;
     padding: 0;
-    background-color: rgba(0, 0, 0, 0.8);
+    background-color: rgba(1, 5, 0, 0.8);
 }
 
 nav ul li {
@@ -61,7 +75,6 @@ nav ul li a {
 }
 
 .hero {
-    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('hero-image.jpg') no-repeat center center/cover;
     color: white;
     text-align: center;
     padding: 100px 20px;
