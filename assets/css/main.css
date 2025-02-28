@@ -4681,3 +4681,16 @@ input, select, textarea {
 		}
 
 	}
+/* CSS om de afbeelding in het midden van de pagina uit te lijnen */
+.centered-image {
+    display: flex;
+    justify-content: center; /* Centreren op de horizontale as */
+    align-items: center;    /* Centreren op de verticale as */
+    height: 100vh;           /* Volledige hoogte van het viewport gebruiken */
+    text-align: center;      /* Extra zekerheid voor het centreren van de inhoud */
+}
+
+.centered-image img {
+    max-width: 100%;        /* Zorgt ervoor dat de afbeelding niet buiten de container valt */
+    height: auto;           /* Behoudt de originele verhouding van de afbeelding */
+}
