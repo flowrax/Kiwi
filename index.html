@@ -1,217 +1,124 @@
-<!DOCTYPE HTML>
-<html>
-	<head>
-		<title>Expeditie Kiwi</title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="stylesheet" href="assets/css/main.css" />
-		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
-	</head>
-	<body class="is-preload">
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Expeditie Kiwi</title>
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.5/dist/leaflet.css"
+ integrity="sha256-sA+e2bM4s3apz2xkY7RkZ6mQ2pFzH8jLr8a8tE/6ooc=" crossorigin=""/>
 
-		<!-- Wrapper -->
-			<div id="wrapper" class="fade-in">
+<!-- Blogs data -->
+<script src="data/blogs.js"></script>
+<script src="data/home-werking.js"></script>
 
-				<!-- Intro -->
-					<div id="intro">
-						<h1>Expeditie<br />
-						Kiwi</h1>
-						<p>365 dagen avontuur in onze zelfgebouwde campervan genaamd Kiwi!</p>
-						<ul class="actions">
-							<li><a href="#header" class="button icon solid solo fa-arrow-down scrolly">Continue</a></li>
-						</ul>
-					</div>
+<style>
+  /* Zorg dat de kaart zichtbaar is */
+  #map {
+    height: 500px;
+    width: 100%;
+    border: 1px solid #ccc;
+    margin-bottom: 2rem;
+  }
+</style>
+</head>
+<body>
 
-				<!-- Header -->
-					<header id="header">
-						<a href="index.html" class="logo">Kiwi</a>
-					</header>
+<nav>
+  <div class="nav-inner">
+    <div class="brand">
+      <a href="index.html">
+        <img src="img/logo.png" alt="Expeditie Kiwi Logo" class="logo">
+        Expeditie Kiwi
+      </a>
+    </div>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li class="dropdown">
+        <a href="over.html">Over ▾</a>
+        <ul class="dropdown-menu">
+          <li><a href="bouw-bus.html">Bouw van de bus</a></li>
+          <li><a href="strips.html">Strips</a></li>
+        </ul>
+      </li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="blog.html">Blog</a></li>
+    </ul>
+  </div>
+</nav>
 
-				<!-- Nav -->
-					<nav id="nav">
-						<ul class="links">
-							<li class="active"><a href="index.html">Dit is Kiwi</a></li>
-							<li><a href="generic.html">Blog</a></li>
-							<li><a href="elements.html">Landen</a></li>
-							<li><a href="foto.html">Foto's</a></li>
-						</ul>
-						<ul class="icons">						
-							<li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
-							<li><a href="#" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
-						</ul>
-					</nav>
+<section class="hero">
+  <div class="shape shape1"></div>
+  <div class="shape shape2"></div>
+  <div class="shape shape3"></div>
+  <div class="sparkle" style="top:20%; left:15%;"></div>
+  <div class="sparkle" style="top:40%; left:70%;"></div>
+  <div class="sparkle" style="top:60%; left:30%;"></div>
+  <div class="sparkle" style="top:80%; left:50%;"></div>
+  <h1>Welkom bij Expeditie Kiwi</h1>
+  <p>Ontdek avonturen, blogs en verhalen vol inspiratie!</p>
+  <a href="blog.html" class="btn">Bekijk Blogs</a>
+</section>
 
-				<!-- Main -->
-					<div id="main">
+<section class="counters">
+  <div class="counter" id="counterBlogs">
+    <span class="count">0</span>
+    <span class="counter-label">Blogs</span>
+  </div>
+  <div class="counter" id="counterLanden">
+    <span class="count">0</span>
+    <span class="counter-label">Landen bezocht</span>
+  </div>
+</section>
 
-						<!-- Featured Post -->
-							<article class="post featured">
-								<header class="major">
-									<span class="date">1 mei 2025</span>
-									<h2><a href="#">Expeditie<br />
-									Kiwi</a></h2>
-									<p>Welkom op de blog website waar je onze reis kan volgen!</p>
-								</header>
-								<a href="#" class="image main"><img src="images/voorbeeld-bus-cartoon.png" alt="" /></a>
-								<ul class="actions special">
-									<li><a href="#" class="button large">Lees hier!</a></li>
-								</ul>
-							</article>
+<section class="blogs" id="homeBlogs">
+  <!-- Dynamische blogcards worden hier door home-werking.js toegevoegd -->
+</section>
 
-						<!-- Posts -->
-							<section class="posts">
-								<article>
-									<header>
-										<span class="date">27 februari 2025</span>
-										<h2><a href="#">Sed magna<br />
-										ipsum faucibus</a></h2>
-									</header>
-									<a href="#" class="image fit"><img src="images/voorbeeld-bus.png" alt="" /></a>
-									<p>Donec eget ex magna. Interdum et malesuada fames ac ante ipsum primis in faucibus. Pellentesque venenatis dolor imperdiet dolor mattis sagittis magna etiam.</p>
-									<ul class="actions special">
-										<li><a href="#" class="button">Lees hier!</a></li>
-									</ul>
-								</article>
-								<article>
-									<header>
-										<span class="date">27 februari 2025</span>
-										<h2><a href="#">Primis eget<br />
-										imperdiet lorem</a></h2>
-									</header>
-									<a href="#" class="image fit"><img src="images/voorbeeld-bus.png" alt="" /></a>
-									<p>Donec eget ex magna. Interdum et malesuada fames ac ante ipsum primis in faucibus. Pellentesque venenatis dolor imperdiet dolor mattis sagittis magna etiam.</p>
-									<ul class="actions special">
-										<li><a href="#" class="button">Lees hier!</a></li>
-									</ul>
-								</article>
-								<article>
-									<header>
-										<span class="date">27 februari 2025</span>
-										<h2><a href="#">Ante mattis<br />
-										interdum dolor</a></h2>
-									</header>
-									<a href="#" class="image fit"><img src="images/voorbeeld-bus.png" alt="" /></a>
-									<p>Donec eget ex magna. Interdum et malesuada fames ac ante ipsum primis in faucibus. Pellentesque venenatis dolor imperdiet dolor mattis sagittis magna etiam.</p>
-									<ul class="actions special">
-										<li><a href="#" class="button">Lees hier!</a></li>
-									</ul>
-								</article>
-								<article>
-									<header>
-										<span class="date">27 februari 2025</span>
-										<h2><a href="#">Tempus sed<br />
-										nulla imperdiet</a></h2>
-									</header>
-									<a href="#" class="image fit"><img src="images/voorbeeld-bus.png" alt="" /></a>
-									<p>Donec eget ex magna. Interdum et malesuada fames ac ante ipsum primis in faucibus. Pellentesque venenatis dolor imperdiet dolor mattis sagittis magna etiam.</p>
-									<ul class="actions special">
-										<li><a href="#" class="button">Lees hier!</a></li>
-									</ul>
-								</article>
-								<article>
-									<header>
-										<span class="date">27 februari 2025</span>
-										<h2><a href="#">Odio magna<br />
-										sed consectetur</a></h2>
-									</header>
-									<a href="#" class="image fit"><img src="images/voorbeeld-bus.png" alt="" /></a>
-									<p>Donec eget ex magna. Interdum et malesuada fames ac ante ipsum primis in faucibus. Pellentesque venenatis dolor imperdiet dolor mattis sagittis magna etiam.</p>
-									<ul class="actions special">
-										<li><a href="#" class="button">Lees hier!</a></li>
-									</ul>
-								</article>
-								<article>
-									<header>
-										<span class="date">27 februari 2025</span>
-										<h2><a href="#">Augue lorem<br />
-										primis vestibulum</a></h2>
-									</header>
-									<a href="#" class="image fit"><img src="images/voorbeeld-bus.png" alt="" /></a>
-									<p>Donec eget ex magna. Interdum et malesuada fames ac ante ipsum primis in faucibus. Pellentesque venenatis dolor imperdiet dolor mattis sagittis magna etiam.</p>
-									<ul class="actions special">
-										<li><a href="#" class="button">Lees hier!</a></li>
-									</ul>
-								</article>
-							</section>
+<h2>Onze Route</h2>
+<div id="map"></div>
 
-						<!-- Footer -->
-							<footer>
-								<div class="pagination">
-									<!--<a href="#" class="previous">Prev</a>-->
-									<a href="#" class="page active">1</a>
-									<a href="#" class="page">2</a>
-									<a href="#" class="page">3</a>
-									<span class="extra">&hellip;</span>
-									<a href="#" class="page">8</a>
-									<a href="#" class="page">9</a>
-									<a href="#" class="page">10</a>
-									<a href="#" class="next">Next</a>
-								</div>
-							</footer>
+<footer>
+  &copy; 2025 Expeditie Kiwi
+</footer>
 
-					</div>
+<!-- Leaflet JS -->
+<script src="https://unpkg.com/leaflet@1.9.5/dist/leaflet.js"
+ integrity="sha256-oQ2H2iZphQf7ZH5fTqkWqXaqx3lGcFuhz5F+T2HGz7M=" crossorigin=""></script>
 
-				<!-- Footer -->
-					<footer id="footer">
-						<section>
-							<form method="post" action="#">
-								<div class="fields">
-									<div class="field">
-										<label for="name">Naam</label>
-										<input type="text" name="name" id="name" />
-									</div>
-									<div class="field">
-										<label for="email">Email</label>
-										<input type="text" name="email" id="email" />
-									</div>
-									<div class="field">
-										<label for="message">Bericht</label>
-										<textarea name="message" id="message" rows="3"></textarea>
-									</div>
-								</div>
-								<ul class="actions">
-									<li><input type="submit" value="Stuur bericht" /></li>
-								</ul>
-							</form>
-						</section>
-						<section class="split contact">
-							<section class="alt">
-								<h3>Adres</h3>
-								<p>Ergens op een afgelegen zandweggetje</p>
-							</section>
-							<section>
-								<h3>Even kletsen?</h3>
-								<p><a href="#">06 15 62 17 32</a></p>
-							</section>
-							<section>
-								<h3>Email</h3>
-								<p><a href="#">willem@expeditiekiwi.nl</a></p>
-							</section>
-							<section>
-								<h3>Social</h3>
-								<ul class="icons alt">
-									<li><a href="#" class="icon brands alt fa-instagram"><span class="label">Instagram</span></a></li>
-									<li><a href="#" class="icon brands alt fa-github"><span class="label">GitHub</span></a></li>
-								</ul>
-							</section>
-						</section>
-					</footer>
+<!-- Kaart initialisatie (VPN-proof tiles) -->
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    if (!window.blogs || window.blogs.length === 0) {
+        console.warn('Geen blogs gevonden voor de kaart.');
+        return;
+    }
 
-				<!-- Copyright -->
-					<div id="copyright">
-						<ul><li>&copy; Willem en Kimmia</li><li>Design: <a href="https://html5up.net">HTML5 UP</a></li></ul>
-					</div>
+    // Kaart initialiseren op de eerste blog
+    const map = L.map('map').setView([window.blogs[0].lat, window.blogs[0].lng], 6);
 
-			</div>
+    // VPN-proof tiles (Carto Positron)
+    L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/">CARTO</a>',
+        subdomains: 'abcd',
+        maxZoom: 19
+    }).addTo(map);
 
-		<!-- Scripts -->
-			<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/jquery.scrollex.min.js"></script>
-			<script src="assets/js/jquery.scrolly.min.js"></script>
-			<script src="assets/js/browser.min.js"></script>
-			<script src="assets/js/breakpoints.min.js"></script>
-			<script src="assets/js/util.js"></script>
-			<script src="assets/js/main.js"></script>
+    // Markers toevoegen voor elke blog
+    window.blogs.forEach(blog => {
+        L.marker([blog.lat, blog.lng])
+         .addTo(map)
+         .bindPopup(`<strong>${blog.title}</strong><br>${blog.description || ''}`);
+    });
 
-	</body>
+    // Route tekenen (lijn tussen alle locaties)
+    const routeLatLngs = window.blogs.map(blog => [blog.lat, blog.lng]);
+    const polyline = L.polyline(routeLatLngs, {color: 'blue', weight: 3}).addTo(map);
+
+    // Zoom zodat alles zichtbaar is
+    map.fitBounds(polyline.getBounds());
+});
+</script>
+
+</body>
 </html>
