@@ -1,0 +1,210 @@
+// Eenvoudige 'CMS' met alle blogs als objects. Voeg hier nieuwe blogs toe.
+
+window.blogs = [
+  {
+    id: 'Wageningen!',
+    title: 'Wageningen - Nederland',
+    land: 'Nederland',
+    date:'06-05-2025',
+    image: 'img/1/foto2.jpg',
+    photos: ['img/1/foto1.jpg','img/1/foto2.jpg'],
+    description: 'Het eerste nachtje.',
+    content: `<h2>Wageningen - Nederland</h2>
+              <p>Aangezien we nogal laat vertrokken onze eerste overnachting in het prachtige Wageningen. En natuurlijk in de ochtend de camping oven uitproberen voor lekkere verse broodjes!</p>`,
+    lat: 51.9686,
+    lng: 5.6667
+  },
+  {
+    id: 'Thorn',
+    title: 'Thorn - Nederland',
+    land: 'Nederland',
+    date:'08-05-2025',
+    image: 'img/2/foto3.jpg',
+    photos: ['img/2/foto1.jpg','img/2/foto2.jpg','img/2/foto3.jpg','img/2/foto4.jpg'],
+    description: 'De laatste loodjes.',
+    content: `<h2>Thorn - Nederland</h2>
+              <p>Na het nodige loodgieterswerk is het watersysteem niet meer lek...</p>`,
+    lat: 51.1931,
+    lng: 5.9071
+  },
+  {
+    id: 'Forst',
+    title: 'Forst - Duitsland',
+    land: 'Duitsland',
+    date:'09-05-2025',
+    image: 'img/3/foto1.jpg',
+    photos: ['img/3/foto1.jpg','img/3/foto2.jpg','img/3/foto3.jpg','img/3/foto4.jpg'],
+    description: 'KAAL!',
+    content: `<h2>Forst - Duitsland</h2><p>Duitsland en Oostenrijk waren niet echt het benoemen waardig...</p>`,
+    lat: 51.1594,
+    lng: 14.6353
+  },
+  {
+    id: 'Auronzo Di Cadore',
+    title: 'Auronzo Di Cadore - Italië',
+    land: 'Italië',
+    date:'10-05-2025',
+    image: 'img/4/foto1.jpg',
+    photos: ['img/4/foto1.jpg','img/4/foto2.jpg','img/4/foto3.jpg','img/4/foto4.jpg','img/4/foto5.jpg','img/4/foto6.jpg','img/4/foto7.jpg','img/4/foto8.jpg','img/4/foto9.jpg'],
+    description: 'Hiken in de Dolomieten.',
+    content: `<h2>Auronzo Di Cadore - Italië</h2><p>De eerste geplande stop, de Dolomieten!...</p>`,
+    lat: 46.5933,
+    lng: 12.3142
+  },
+  {
+    id: 'Tarcento',
+    title: 'Tarcento - Italië',
+    land: 'Italië',
+    date:'12-05-2025',
+    image: 'img/5/foto1.jpg',
+    photos: ['img/5/foto1.jpg','img/5/foto2.jpg','img/5/foto3.jpg'],
+    description: 'Pizza, pizza en nog eens PIZZA!',
+    content: `<h2>Tarcento - Italië</h2><p>Er is eigenlijk maar één woord dat past bij deze stap: PIZZA!...</p>`,
+    lat: 46.3046,
+    lng: 13.0423
+  },
+  {
+    id: 'Ljubljana',
+    title: 'Ljubljana - Slovenië',
+    land: 'Slovenië',
+    date:'13-05-2025',
+    image: 'img/6/foto1.jpg',
+    photos: ['img/6/foto1.jpg','img/6/foto2.jpg','img/6/foto3.jpg','img/6/foto4.jpg','img/6/foto5.jpg','img/6/foto6.jpg','img/6/foto7.jpg','img/6/foto8.jpg','img/6/foto9.jpg','img/6/foto10.jpg'],
+    description: 'Wat een verrassing.',
+    content: `<h2>Ljubljana - Slovenië</h2><p>En al weer door naar het volgende land...</p>`,
+    lat: 46.0569,
+    lng: 14.5058
+  },
+  {
+    id: 'Primorsko-goranska',
+    title: 'Primorsko-goranska - Kroatië',
+    land: 'Kroatië',
+    date:'14-05-2025',
+    image: 'img/7/foto1.jpg',
+    photos: ['img/7/foto1.jpg','img/7/foto2.jpg','img/7/foto3.jpg','img/7/foto4.jpg','img/7/foto5.jpg'],
+    description: 'Terug in de tijd.',
+    content: `<h2>Primorsko-goranska - Kroatië</h2><p>Terug in de tijd! Nacht 1 en 2 in Kroatië...</p>`,
+    lat: 45.3297,
+    lng: 14.4428
+  },
+  {
+    id: 'Sibenik',
+    title: 'Sibenik - Kroatië',
+    land: 'Kroatië',
+    date:'16-05-2025',
+    image: 'img/8/foto1.jpg',
+    photos: ['img/8/foto1.jpg'],
+    description: 'Tussen de olijven.',
+    content: `<h2>Sibenik - Kroatië</h2><p>Nacht 3 in Kroatië! Midden tussen de olijfbomen...</p>`,
+    lat: 43.7384,
+    lng: 15.9052
+  },
+  {
+    id: 'Dubrovnik',
+    title: 'Dubrovnik - Kroatië',
+    land: 'Kroatië',
+    date:'17-05-2025',
+    image: 'img/9/foto1.jpg',
+    photos: ['img/9/foto1.jpg','img/9/foto2.jpg','img/9/foto3.jpg','img/9/foto4.jpg','img/9/foto5.jpg','img/9/foto6.jpg','img/9/foto7.jpg','img/9/foto8.jpg','img/9/foto9.jpg','img/9/foto10.jpg','img/9/foto11.jpg','img/9/foto12.jpg'],
+    description: 'Openluchtmuseum en aan het strand.',
+    content: `<h2>Dubrovnik - Kroatië</h2><p>Nacht 4 op een ontzettend fijne plek...</p>`,
+    lat: 42.6507,
+    lng: 18.0944
+  },
+  {
+    id: 'Kuside',
+    title: 'Kuside - Montenegro',
+    land: 'Montenegro',
+    date:'18-05-2025',
+    image: 'img/10/foto1.jpg',
+    photos: ['img/10/foto1.jpg','img/10/foto2.jpg','img/10/foto3.jpg','img/10/foto4.jpg'],
+    description: 'Een nachtje in Montenegro.',
+    content: `<h2>Kuside - Montenegro</h2><p>Montenegro was kort maar krachtig...</p>`,
+    lat: 42.7554,
+    lng: 19.2519
+  },
+  {
+    id: 'Krusevac',
+    title: 'Krusevac - Servië',
+    land: 'Servië',
+    date:'19-05-2025',
+    image: 'img/11/foto4.jpg',
+    photos: ['img/11/foto1.jpg','img/11/foto2.jpg','img/11/foto3.jpg','img/11/foto4.jpg'],
+    description: 'Grenscontrole...',
+    content: `<h2>Krusevac - Servië</h2><p>Uitgebreide grenscontrole...</p>`,
+    lat: 43.5804,
+    lng: 21.3333
+  },
+  {
+    id: 'Panichishte',
+    title: 'Panichishte - Bulgarije',
+    land: 'Bulgarije',
+    date:'20-05-2025',
+    image: 'img/12/foto1.jpg',
+    photos: ['img/12/foto1.jpg','img/12/foto2.jpg','img/12/foto3.jpg','img/12/foto4.jpg','img/12/foto5.jpg','img/12/foto6.jpg','img/12/foto7.jpg','img/12/foto8.jpg'],
+    description:  'Harde wind tijdens het wandelen.',
+    content: `<h2>Panichishte - Bulgarije</h2><p>De eerste stop in Bulgarije...</p>`,
+    lat: 42.0187,
+    lng: 23.6155
+  },
+  {
+    id: 'Kurtovo Konare',
+    title: 'Kurtovo Konare - Bulgarije',
+    land: 'Bulgarije',
+    date:'21-05-2025',
+    image: 'img/13/foto1.jpg',
+    photos: ['img/13/foto1.jpg','img/13/foto2.jpg','img/13/foto3.jpg','img/13/foto4.jpg'],
+    description: 'Poke-Bowl!',
+    content: `<h2>Kurtovo Konare - Bulgarije</h2><p>Plekje 2 in Bulgarije...</p>`,
+    lat: 42.0083,
+    lng: 25.3450
+  },
+  {
+    id: 'Plovdiv',
+    title: 'Plovdiv - Bulgarije',
+    land: 'Bulgarije',
+    date:'23-05-2025',
+    image: 'img/14/foto1.jpg',
+    photos: ['img/14/foto1.jpg','img/14/foto2.jpg','img/14/foto3.jpg','img/14/foto4.jpg','img/14/foto5.jpg','img/14/foto6.jpg','img/14/foto7.jpg','img/14/foto8.jpg','img/14/foto9.jpg','img/14/foto10.jpg'],
+    description: 'De oudste stad van Europa.',
+    content: `<h2>Plovdiv - Bulgarije</h2><p>Dagje naar Plovdiv...</p>`,
+    lat: 42.1354,
+    lng: 24.7453
+  },
+  {
+    id: 'Tekirdağ',
+    title: 'Tekirdağ - Turkije',
+    land: 'Turkije',
+    date:'25-05-2025',
+    image: 'img/15/foto1.jpg',
+    photos: ['img/15/foto1.jpg','img/15/foto2.jpg','img/15/foto3.jpg','img/15/foto4.jpg'],
+    description: 'Eerste nacht Turkije.',
+    content: `<h2>Tekirdağ - Turkije</h2><p>Eerste overnachtingsplekje in Turkije...</p>`,
+    lat: 40.9781,
+    lng: 27.5156
+  },
+  {
+    id: 'Seddülbahir Köyü',
+    title: 'Seddülbahir Köyü - Turkije',
+    land: 'Turkije',
+    date:'28-05-2025',
+    image: 'img/16/foto1.jpg',
+    photos: ['img/16/foto1.jpg','img/16/foto2.jpg'],
+    description: 'Kanonnen!',
+    content: `<h2>Seddülbahir Köyü - Turkije</h2><p>Overnachtingsplekje twee...</p>`,
+    lat: 39.9698,
+    lng: 26.3005
+  },
+  {
+    id: 'Bergama',
+    title: 'Bergama - Turkije',
+    land: 'Turkije',
+    date:'29-05-2025',
+    image: 'img/17/foto1.jpg',
+    photos: ['img/17/foto1.jpg','img/17/foto2.jpg','img/17/foto3.jpg','img/17/foto4.jpg','img/17/foto5.jpg','img/17/foto6.jpg','img/17/foto7.jpg','img/17/foto8.jpg','img/17/foto9.jpg'],
+    description: 'Rare jongens die Romeinen!',
+    content: `<h2>Bergama - Turkije</h2><p>Vandaag hebben we rond gehobbeld...</p>`,
+    lat: 39.1200,
+    lng: 27.1800
+  }
+];
