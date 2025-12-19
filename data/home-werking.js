@@ -8,7 +8,7 @@ window.addEventListener('DOMContentLoaded', () => {
   // Blogcards: laatste 3 blogs
   // -----------------------------
   const homeBlogContainer = document.getElementById('homeBlogs');
-  if (window.blogs && Array.isArray(window.blogs)) {
+  if (homeBlogContainer && window.blogs && Array.isArray(window.blogs)) {
     const sortedBlogs = window.blogs.slice().sort((a,b) => new Date(b.date.split('-').reverse().join('-')) - new Date(a.date.split('-').reverse().join('-')));
     const latest3 = sortedBlogs.slice(0,3);
 
