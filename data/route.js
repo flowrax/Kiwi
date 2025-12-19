@@ -2,10 +2,57 @@
 
 // Mapping van blogs.js landnamen naar GeoJSON id (ISO 3166-1 alpha-2)
 const countryNameToCode = {
-    "nederland": "NL",
-    "spanje": "ES",
-    "iran": "IR",
-    "frankrijk": "FR"
+    const countryNameToCode = {
+  "albanië": "AL",
+  "andorra": "AD",
+  "armenië": "AM",
+  "oostenrijk": "AT",
+  "azerbeidzjan": "AZ",
+  "belgië": "BE",
+  "bosnië": "BA",
+  "bulgarije": "BG",
+  "kroatië": "HR",
+  "cyprus": "CY",
+  "tsjechië": "CZ",
+  "denemarken": "DK",
+  "estland": "EE",
+  "finland": "FI",
+  "frankrijk": "FR",
+  "georgië": "GE",
+  "duitsland": "DE",
+  "griekenland": "GR",
+  "hongarije": "HU",
+  "ijsland": "IS",
+  "ierland": "IE",
+  "italië": "IT",
+  "kazachstan": "KZ",
+  "kosovo": "XK",
+  "letland": "LV",
+  "liechtenstein": "LI",
+  "litouwen": "LT",
+  "luxemburg": "LU",
+  "malta": "MT",
+  "moldavië": "MD",
+  "monaco": "MC",
+  "montenegro": "ME",
+  "nederland": "NL",
+  "noorwegen": "NO",
+  "polen": "PL",
+  "portugal": "PT",
+  "roemenië": "RO",
+  "rusland": "RU",
+  "servië": "RS",
+  "slovenië": "SI",
+  "slowakije": "SK",
+  "spanje": "ES",
+  "zweden": "SE",
+  "zwitserland": "CH",
+  "turkije": "TR",
+  "iran": "IR",
+  "maleisië": "MY",
+  "sri lanka": "LK"
+};
+
     // Voeg hier meer toe als nodig
 };
 
