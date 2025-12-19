@@ -498,7 +498,7 @@ nav:hover { transform: translateY(-2px); }
 /* Samenvatting met witregel boven */
 .blog-card p {
   margin: 10px 15px 15px; /* ← witruimte tussen foto en tekst */
-  font-size: 0.9rem;
+  font-size: 1.2rem;
   color: #666;
 }
 
