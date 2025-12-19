@@ -77,7 +77,33 @@
 <script>
 document.addEventListener("DOMContentLoaded", () => {
 
-  // Mapping landnamen (zoals in blogs.js) naar ISO codes
+  // ==============================================
+  // COUNTERS (met animatie)
+  // ==============================================
+  const totalBlogs = window.blogs ? window.blogs.length : 0;
+  const countries = window.blogs ? [...new Set(window.blogs.map(b => b.land || b.country).filter(Boolean))] : [];
+  const totalCountries = countries.length;
+
+  function animateCounter(counterEl, target) {
+    let current = 0;
+    const increment = Math.ceil(target / 200);
+    const countEl = counterEl.querySelector('.count');
+
+    function update() {
+      current = Math.min(current + increment, target);
+      countEl.innerText = current;
+      if (current < target) requestAnimationFrame(update);
+    }
+
+    update();
+  }
+
+  animateCounter(document.getElementById('counterBlogs'), totalBlogs);
+  animateCounter(document.getElementById('counterLanden'), totalCountries);
+
+  // ==============================================
+  // MAP: Leaflet kaart met bezochte landen
+  // ==============================================
   const countryNameToCode = {
     "albanië": "AL","andorra": "AD","armenië": "AM","oostenrijk": "AT","azerbeidzjan": "AZ",
     "belgië": "BE","bosnie": "BA","bulgarije": "BG","kroatie": "HR","cyprus": "CY",
@@ -91,26 +117,16 @@ document.addEventListener("DOMContentLoaded", () => {
     "turkije": "TR","iran": "IR","maleisie": "MY","sri lanka": "LK"
   };
 
-  // Unieke bezochte landen uit blogs.js
   const visitedCountries = Array.from(new Set(
     window.blogs.map(blog => countryNameToCode[blog.land.toLowerCase()]).filter(Boolean)
   ));
 
-  // Counters updaten
-  const counterBlogs = document.querySelector("#counterBlogs .count");
-  const counterLanden = document.querySelector("#counterLanden .count");
-
-  if(counterBlogs) counterBlogs.textContent = window.blogs.length;
-  if(counterLanden) counterLanden.textContent = visitedCountries.length;
-
-  // Init Leaflet-kaart
   const map = L.map('visited-map').setView([20, 0], 2);
 
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; OpenStreetMap contributors'
   }).addTo(map);
 
-  // Laad GeoJSON en style landen
   fetch('https://raw.githubusercontent.com/johan/world.geo.json/master/countries.geo.json')
     .then(res => res.json())
     .then(geojson => {
@@ -128,7 +144,6 @@ document.addEventListener("DOMContentLoaded", () => {
       L.geoJson(geojson, {
         style: style,
         onEachFeature: function(feature, layer) {
-
           layer.bindTooltip(feature.properties.name);
 
           layer.on('click', function() {
