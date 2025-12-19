@@ -93,7 +93,11 @@ window.addEventListener('load', () => {
       countries.forEach(country => {
         const tile = document.createElement('div');
         tile.className = 'country-tile show';
-        tile.style.backgroundImage = `url('img/landen/${country}.png')`;
+        const fileName = country
+  .toLowerCase()
+  .normalize('NFD')
+  .replace(/[\u0300-\u036f]/g, '');
+tile.style.backgroundImage = `url('img/landen/${fileName}.png')`;
         tile.innerHTML = `<span>${country}</span>`;
         tile.addEventListener('click', () => {
           renderBlogs(window.blogs.filter(b => (b.land||b.country)===country));
