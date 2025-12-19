@@ -6,9 +6,11 @@
 <title>Expeditie Kiwi</title>
 
 <link rel="stylesheet" href="css/style.css">
+
+<!-- Leaflet CSS -->
 <link
   rel="stylesheet"
-  href="https://cdn.jsdelivr.net/npm/leaflet@1.9.5/dist/leaflet.css"
+  href="https://unpkg.com/leaflet@1.9.5/dist/leaflet.css"
 />
 
 <style>
@@ -78,33 +80,24 @@
   &copy; 2025 Expeditie Kiwi
 </footer>
 
-<!-- ===============================
-     DATA & PAGINAWERKING
-     =============================== -->
-
+<!-- DATA -->
 <script src="data/blogs.js"></script>
 <script src="data/home-werking.js"></script>
 
-<!-- ===============================
-     LEAFLET (ZONDER defer!)
-     =============================== -->
+<!-- Leaflet JS -->
+<script src="https://unpkg.com/leaflet@1.9.5/dist/leaflet.js"></script>
 
-<script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.5/dist/leaflet.js"></script>
-
-<!-- ===============================
-     INLINE KAARTSCRIPT
-     =============================== -->
-
+<!-- KAART -->
 <script>
 document.addEventListener("DOMContentLoaded", () => {
 
-  if (typeof L === "undefined") {
-    console.error("❌ Leaflet is niet geladen");
+  if (!window.L) {
+    console.error("❌ Leaflet is NIET geladen");
     return;
   }
 
-  if (!window.blogs || !Array.isArray(window.blogs)) {
-    console.error("❌ blogs.js is niet geladen");
+  if (!Array.isArray(window.blogs)) {
+    console.error("❌ blogs.js niet beschikbaar");
     return;
   }
 
