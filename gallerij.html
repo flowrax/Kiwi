@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<title>Fotogalerij – Expeditie Kiwi</title>
+<link rel="stylesheet" href="css/style.css">
+<style>
+.gallery {
+display: grid;
+grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+gap: 1rem;
+margin: 2rem 0;
+}
+.gallery img {
+width: 100%;
+height: auto;
+border-radius: 12px;
+}
+</style>
+</head>
+<body>
+
+
+<h1>Fotogalerij</h1>
+<p>Momenten onderweg – zonder verhaal, alleen beeld.</p>
+
+
+<div class="gallery" id="gallery"></div>
+
+
+<script src="data/blogs.js"></script>
+<script>
+const gallery = document.getElementById('gallery');
+const images = window.blogs.flatMap(b => b.images || []);
+
+
+gallery.innerHTML = images.map(img => `
+<img src="${img}" loading="lazy">
+`).join('');
+</script>
+
+
+</body>
+</html>

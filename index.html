@@ -6,72 +6,11 @@
 <title>Expeditie Kiwi</title>
 
 <link rel="stylesheet" href="css/style.css">
-
-<style>
-  /* Counters */
-  .counters {
-    display: flex;
-    gap: 2rem;
-    margin: 2rem 0;
-    justify-content: center;
-  }
-  .counter {
-    text-align: center;
-  }
-
-  /* Laatste blogs sectie */
-  #homeBlogs {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
-    justify-content: center;
-    margin: 2rem 0;
-  }
-  .blog-card {
-    flex: 1 1 calc(33.333% - 1rem);
-    max-width: 350px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    padding: 1rem;
-    cursor: pointer;
-    transition: transform 0.2s, box-shadow 0.2s;
-    background-color: #fff;
-  }
-  .blog-card:hover {
-    transform: scale(1.03);
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-  }
-  .blog-card img {
-    width: 100%;
-    height: auto;
-    border-radius: 6px;
-    margin-bottom: 0.5rem;
-  }
-  .blog-card h3 {
-    margin: 0.5rem 0;
-    font-size: 1.2rem;
-  }
-  .blog-card p {
-    font-size: 0.95rem;
-    color: #555;
-  }
-
-  /* Responsive */
-  @media (max-width: 900px) {
-    .blog-card {
-      flex: 1 1 calc(50% - 1rem);
-    }
-  }
-  @media (max-width: 600px) {
-    .blog-card {
-      flex: 1 1 100%;
-    }
-  }
-</style>
 </head>
 
 <body>
 
+<!-- NAVIGATIE -->
 <nav>
   <div class="nav-inner">
     <div class="brand">
@@ -95,21 +34,26 @@
   </div>
 </nav>
 
+<!-- HERO SECTIE -->
 <section class="hero">
+  <!-- Decoratieve vormen -->
   <div class="shape shape1"></div>
   <div class="shape shape2"></div>
   <div class="shape shape3"></div>
 
+  <!-- Sparkle effect -->
   <div class="sparkle" style="top:20%; left:15%;"></div>
   <div class="sparkle" style="top:40%; left:70%;"></div>
   <div class="sparkle" style="top:60%; left:30%;"></div>
   <div class="sparkle" style="top:80%; left:50%;"></div>
 
+  <!-- Tekst -->
   <h1>Welkom bij Expeditie Kiwi</h1>
-  <p>Ontdek avonturen, blogs en verhalen vol inspiratie!</p>
+  <p>Ontdek onze reisverhalen, tips en de mooiste plekken over de hele wereld.</p>
   <a href="blog.html" class="btn">Bekijk Blogs</a>
 </section>
 
+<!-- COUNTERS -->
 <section class="counters">
   <div class="counter" id="counterBlogs">
     <span class="count">0</span>
@@ -124,11 +68,12 @@
 <!-- Laatste 3 blogs -->
 <section id="homeBlogs"></section>
 
+<!-- FOOTER -->
 <footer>
   &copy; 2025 Expeditie Kiwi
 </footer>
 
-<!-- DATA & PAGINAWERKING -->
+<!-- DATA & SCRIPT -->
 <script src="data/blogs.js"></script>
 <script src="data/home-werking.js"></script>
 

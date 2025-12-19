@@ -101,4 +101,45 @@ window.addEventListener('DOMContentLoaded', () => {
     setTimeout(sparkleAnim, delay * 1000);
   });
 
+  // -----------------------------
+  // COUNTRY OVERLAY
+  // -----------------------------
+  const countryOverlay = document.getElementById('countryOverlay');
+  const countryTiles = document.getElementById('countryTiles');
+
+  if (countryOverlay && countryTiles && countries.length) {
+    // Maak tiles
+    countries.forEach(country => {
+      const tile = document.createElement('div');
+      tile.className = 'country-tile show';
+      tile.style.backgroundImage = `url('img/landen/${country}.png')`;
+      tile.innerHTML = `<span>${country}</span>`;
+      tile.addEventListener('click', () => {
+        window.location.href = `blog.html?land=${encodeURIComponent(country)}`;
+      });
+      countryTiles.appendChild(tile);
+    });
+
+    // Open overlay via knop
+    const landenBtn = document.createElement('button');
+    landenBtn.innerText = 'Bekijk landen';
+    landenBtn.className = 'btn';
+    landenBtn.style.margin = '20px auto';
+    landenBtn.style.display = 'block';
+    landenBtn.addEventListener('click', () => {
+      countryOverlay.style.display = 'flex';
+      setTimeout(() => countryOverlay.style.opacity = 1, 20);
+    });
+
+    document.querySelector('.counters').after(landenBtn);
+
+    // Sluit overlay als je buiten klikt
+    countryOverlay.addEventListener('click', (e) => {
+      if (e.target === countryOverlay) {
+        countryOverlay.style.opacity = 0;
+        setTimeout(() => countryOverlay.style.display = 'none', 300);
+      }
+    });
+  }
+
 });
