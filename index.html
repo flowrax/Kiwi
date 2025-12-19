@@ -86,20 +86,17 @@
 <script src="data/home-werking.js"></script>
 
 <!-- ===============================
-     LEAFLET (MOET VOOR KAARTCODE)
+     LEAFLET (ZONDER defer!)
      =============================== -->
 
-<script
-  src="https://cdn.jsdelivr.net/npm/leaflet@1.9.5/dist/leaflet.js"
-  defer
-></script>
+<script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.5/dist/leaflet.js"></script>
 
 <!-- ===============================
      INLINE KAARTSCRIPT
      =============================== -->
 
 <script>
-window.addEventListener("load", () => {
+document.addEventListener("DOMContentLoaded", () => {
 
   if (typeof L === "undefined") {
     console.error("❌ Leaflet is niet geladen");
