@@ -8,34 +8,64 @@
 <link rel="stylesheet" href="css/style.css">
 
 <style>
-  /* Styling voor counters en blogcards */
+  /* Counters */
   .counters {
     display: flex;
     gap: 2rem;
     margin: 2rem 0;
+    justify-content: center;
   }
   .counter {
     text-align: center;
   }
+
+  /* Laatste blogs sectie */
   #homeBlogs {
     display: flex;
-    gap: 1rem;
     flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
     margin: 2rem 0;
   }
   .blog-card {
-    width: calc(33.333% - 1rem);
+    flex: 1 1 calc(33.333% - 1rem);
+    max-width: 350px;
     border: 1px solid #ccc;
+    border-radius: 8px;
     padding: 1rem;
     cursor: pointer;
-    transition: transform 0.2s;
+    transition: transform 0.2s, box-shadow 0.2s;
+    background-color: #fff;
   }
   .blog-card:hover {
-    transform: scale(1.05);
+    transform: scale(1.03);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
   }
   .blog-card img {
     width: 100%;
     height: auto;
+    border-radius: 6px;
+    margin-bottom: 0.5rem;
+  }
+  .blog-card h3 {
+    margin: 0.5rem 0;
+    font-size: 1.2rem;
+  }
+  .blog-card p {
+    font-size: 0.95rem;
+    color: #555;
+  }
+
+  /* Responsive */
+  @media (max-width: 900px) {
+    .blog-card {
+      flex: 1 1 calc(50% - 1rem);
+    }
+  }
+  @media (max-width: 600px) {
+    .blog-card {
+      flex: 1 1 100%;
+    }
   }
 </style>
 </head>
@@ -98,7 +128,7 @@
   &copy; 2025 Expeditie Kiwi
 </footer>
 
-<!-- DATA -->
+<!-- DATA & PAGINAWERKING -->
 <script src="data/blogs.js"></script>
 <script src="data/home-werking.js"></script>
 
