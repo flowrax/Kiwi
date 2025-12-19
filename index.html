@@ -69,57 +69,22 @@
   </div>
 </section>
 
-<section class="blogs" id="homeBlogs">
-  <!-- Dynamische blogcards worden hier door home-werking.js toegevoegd -->
-</section>
+<div id="visited-map" style="height: 500px; width: 100%;"></div>
 
-<h2>Onze Route</h2>
-<div id="map"></div>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.5/dist/leaflet.css"/>
+<script src="https://unpkg.com/leaflet@1.9.5/dist/leaflet.js"></script>
+
+<!-- eerst blogs.js laden -->
+<script src="blogs.js"></script>
+
+<!-- daarna route.js -->
+<script src="route.js"></script>
+
 
 <footer>
   &copy; 2025 Expeditie Kiwi
 </footer>
 
-<!-- Scripts -->
-<script src="data/blogs.js"></script>
-<script src="data/home-werking.js"></script>
-
-<!-- Leaflet JS via CDN -->
-<script src="https://unpkg.com/leaflet@1.9.5/dist/leaflet.js"
- integrity="sha256-oQ2H2iZphQf7ZH5fTqkWqXaqx3lGcFuhz5F+T2HGz7M=" crossorigin=""></script>
-
-<script>
-document.addEventListener('DOMContentLoaded', () => {
-
-    if (!window.blogs || window.blogs.length === 0) {
-        console.warn('Geen blogs gevonden voor de kaart.');
-        return;
-    }
-
-    // Kaart initialiseren op eerste locatie
-    const map = L.map('map').setView([window.blogs[0].lat, window.blogs[0].lng], 6);
-
-    // Tiles via OSM CDN (werkt op GitHub Pages)
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        attribution: '&copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors',
-        maxZoom: 19
-    }).addTo(map);
-
-    // Markers toevoegen
-    window.blogs.forEach(blog => {
-        L.marker([blog.lat, blog.lng])
-         .addTo(map)
-         .bindPopup(`<strong>${blog.title}</strong><br>${blog.description || ''}`);
-    });
-
-    // Route tekenen
-    const routeLatLngs = window.blogs.map(blog => [blog.lat, blog.lng]);
-    const polyline = L.polyline(routeLatLngs, {color: 'blue', weight: 3}).addTo(map);
-
-    // Zoom zodat alles zichtbaar is
-    map.fitBounds(polyline.getBounds());
-});
-</script>
 
 </body>
 </html>
