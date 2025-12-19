@@ -16,12 +16,13 @@
 
 body {
   margin: 0;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: 'Quicksand', sans-serif;
   background: var(--bg);
   color: #222;
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
 }
+
 
 /* ======================================================
    3. PAGINA-ACHTERGRONDEN (BODY CLASSES)
@@ -261,23 +262,25 @@ nav:hover { transform: translateY(-2px); }
 /* ======================================================
    7.1 HERO SECTIE index.html
    ====================================================== */
-/* =============================
-   HERO SECTIE - HOME PAGE
-   ============================= */
 .hero {
   position: relative;
+  width: 100%;
+  min-height: 500px; /* standaard hoogte desktop */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   text-align: center;
-  padding: 8rem 1.5rem 4rem; /* verhoog de padding-top voor grotere hoogte */
-  overflow: hidden;
   color: white;
   border-radius: 0 0 12px 12px; /* alleen onderaan afgerond */
+  overflow: hidden;
 
-  background-image: url('../img/17/foto1.jpg'); /* juiste pad en extensie */
+  background-image: url('../img/homepage/foto1.jpg'); /* pas pad naar jouw foto aan */
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  min-height: 500px;
 }
+
 /* Tekst en knop boven overlay */
 .hero h1,
 .hero p,
@@ -298,7 +301,6 @@ nav:hover { transform: translateY(-2px); }
 /* Hero subtitel */
 .hero p {
   font-size: clamp(1rem, 2.5vw, 1.5rem);
-  color: #fdfdfd;
   margin-bottom: 2rem;
   text-shadow: 0 1px 4px rgba(0,0,0,0.5);
 }
@@ -319,20 +321,21 @@ nav:hover { transform: translateY(-2px); }
   box-shadow: 0 8px 20px rgba(0,0,0,0.3);
 }
 
-/* Responsive tweaks */
+/* RESPONSIVE */
+@media (max-width: 1200px) {
+  .hero { min-height: 500px; }
+}
+
 @media (max-width: 900px) {
-  .hero {
-    padding: 4rem 1rem 2rem;
-  }
+  .hero { min-height: 400px; padding: 4rem 1rem; }
+  .hero h1 { font-size: 2.5rem; }
+  .hero p { font-size: 1.2rem; }
 }
 
 @media (max-width: 600px) {
-  .hero h1 {
-    font-size: 2rem;
-  }
-  .hero p {
-    font-size: 1rem;
-  }
+  .hero { min-height: 350px; padding: 3rem 1rem; }
+  .hero h1 { font-size: 2rem; }
+  .hero p { font-size: 1rem; }
 }
 
 
