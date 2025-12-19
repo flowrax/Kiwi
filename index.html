@@ -6,10 +6,12 @@
 <title>Expeditie Kiwi</title>
 
 <link rel="stylesheet" href="css/style.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.5/dist/leaflet.css"/>
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/leaflet@1.9.5/dist/leaflet.css"
+/>
 
 <style>
-  /* Zorg dat de kaart zichtbaar is */
   #visited-map {
     height: 500px;
     width: 100%;
@@ -17,8 +19,8 @@
     margin-bottom: 2rem;
   }
 </style>
-
 </head>
+
 <body>
 
 <nav>
@@ -48,10 +50,12 @@
   <div class="shape shape1"></div>
   <div class="shape shape2"></div>
   <div class="shape shape3"></div>
+
   <div class="sparkle" style="top:20%; left:15%;"></div>
   <div class="sparkle" style="top:40%; left:70%;"></div>
   <div class="sparkle" style="top:60%; left:30%;"></div>
   <div class="sparkle" style="top:80%; left:50%;"></div>
+
   <h1>Welkom bij Expeditie Kiwi</h1>
   <p>Ontdek avonturen, blogs en verhalen vol inspiratie!</p>
   <a href="blog.html" class="btn">Bekijk Blogs</a>
@@ -69,58 +73,62 @@
 </section>
 
 <div id="visited-map"></div>
-<!-- Inline kaartscript -->
-<script>
-document.addEventListener("DOMContentLoaded", () => {
 
-  /* ===============================
-     VEILIGHEIDSCHECKS
-     =============================== */
+<footer>
+  &copy; 2025 Expeditie Kiwi
+</footer>
+
+<!-- ===============================
+     DATA & PAGINAWERKING
+     =============================== -->
+
+<script src="data/blogs.js"></script>
+<script src="data/home-werking.js"></script>
+
+<!-- ===============================
+     LEAFLET (MOET VOOR KAARTCODE)
+     =============================== -->
+
+<script
+  src="https://cdn.jsdelivr.net/npm/leaflet@1.9.5/dist/leaflet.js"
+  defer
+></script>
+
+<!-- ===============================
+     INLINE KAARTSCRIPT
+     =============================== -->
+
+<script>
+window.addEventListener("load", () => {
 
   if (typeof L === "undefined") {
-    console.error("❌ Leaflet (L) is niet geladen. Kaart wordt niet geïnitialiseerd.");
-    return;
-  }
-
-  const mapContainer = document.getElementById("visited-map");
-  if (!mapContainer) {
-    console.error("❌ #visited-map element bestaat niet in de HTML.");
+    console.error("❌ Leaflet is niet geladen");
     return;
   }
 
   if (!window.blogs || !Array.isArray(window.blogs)) {
-    console.error("❌ window.blogs is niet beschikbaar.");
+    console.error("❌ blogs.js is niet geladen");
     return;
   }
 
-  /* ===============================
-     LANDMAPPING
-     =============================== */
-
   const countryNameToCode = {
-    "albanië": "AL","andorra": "AD","armenië": "AM","oostenrijk": "AT","azerbeidzjan": "AZ",
-    "belgië": "BE","bosnie": "BA","bulgarije": "BG","kroatie": "HR","cyprus": "CY",
-    "tsjechie": "CZ","denemarken": "DK","estland": "EE","finland": "FI","frankrijk": "FR",
-    "georgie": "GE","duitsland": "DE","griekenland": "GR","hongarije": "HU","ijsland": "IS",
-    "ierland": "IE","italie": "IT","kazachstan": "KZ","kosovo": "XK","letland": "LV",
-    "liechtenstein": "LI","litouwen": "LT","luxemburg": "LU","malta": "MT","moldavie": "MD",
-    "monaco": "MC","montenegro": "ME","nederland": "NL","noorwegen": "NO","polen": "PL",
-    "portugal": "PT","roemenie": "RO","rusland": "RU","servie": "RS","slovenie": "SI",
-    "slowakije": "SK","spanje": "ES","zweden": "SE","zwitserland": "CH",
-    "turkije": "TR","iran": "IR","maleisie": "MY","sri lanka": "LK"
+    "albanië":"AL","andorra":"AD","armenië":"AM","oostenrijk":"AT","azerbeidzjan":"AZ",
+    "belgië":"BE","bosnie":"BA","bulgarije":"BG","kroatie":"HR","cyprus":"CY",
+    "tsjechie":"CZ","denemarken":"DK","estland":"EE","finland":"FI","frankrijk":"FR",
+    "georgie":"GE","duitsland":"DE","griekenland":"GR","hongarije":"HU","ijsland":"IS",
+    "ierland":"IE","italie":"IT","kazachstan":"KZ","kosovo":"XK","letland":"LV",
+    "liechtenstein":"LI","litouwen":"LT","luxemburg":"LU","malta":"MT","moldavie":"MD",
+    "monaco":"MC","montenegro":"ME","nederland":"NL","noorwegen":"NO","polen":"PL",
+    "portugal":"PT","roemenie":"RO","rusland":"RU","servie":"RS","slovenie":"SI",
+    "slowakije":"SK","spanje":"ES","zweden":"SE","zwitserland":"CH",
+    "turkije":"TR","iran":"IR","maleisie":"MY","sri lanka":"LK"
   };
 
-  const visitedCountries = Array.from(new Set(
+  const visitedCountries = [...new Set(
     window.blogs
-      .map(blog => countryNameToCode[blog.land?.toLowerCase()])
+      .map(b => countryNameToCode[b.land?.toLowerCase()])
       .filter(Boolean)
-  ));
-
-  console.log("🌍 Bezochte landen (ISO):", visitedCountries);
-
-  /* ===============================
-     KAART INITIALISEREN
-     =============================== */
+  )];
 
   const map = L.map("visited-map").setView([20, 0], 2);
 
@@ -128,58 +136,24 @@ document.addEventListener("DOMContentLoaded", () => {
     attribution: "&copy; OpenStreetMap contributors"
   }).addTo(map);
 
-  /* ===============================
-     GEOJSON LADEN
-     =============================== */
-
   fetch("https://raw.githubusercontent.com/johan/world.geo.json/master/countries.geo.json")
-    .then(res => {
-      if (!res.ok) throw new Error("GeoJSON kon niet worden geladen");
-      return res.json();
-    })
+    .then(r => r.json())
     .then(geojson => {
-
-      function style(feature) {
-        return {
-          fillColor: visitedCountries.includes(feature.id) ? "#f9a825" : "#ccc",
+      L.geoJson(geojson, {
+        style: f => ({
+          fillColor: visitedCountries.includes(f.id) ? "#f9a825" : "#ccc",
           weight: 1,
-          opacity: 1,
           color: "white",
           fillOpacity: 0.7
-        };
-      }
-
-      L.geoJson(geojson, {
-        style,
-        onEachFeature: (feature, layer) => {
-          layer.bindTooltip(feature.properties.name);
-
-          layer.on("click", () => {
-            const blogsForCountry = window.blogs.filter(
-              blog => countryNameToCode[blog.land?.toLowerCase()] === feature.id
-            );
-
-            let popup = `<strong>${feature.properties.name}</strong><br>`;
-            popup += blogsForCountry.length
-              ? blogsForCountry.map(b => b.title).join("<br>")
-              : "Geen blogs beschikbaar";
-
-            layer.bindPopup(popup).openPopup();
-          });
+        }),
+        onEachFeature: (f, layer) => {
+          layer.bindTooltip(f.properties.name);
         }
       }).addTo(map);
-
-    })
-    .catch(err => {
-      console.error("❌ Fout bij laden GeoJSON:", err);
     });
 
 });
 </script>
-
-<footer>
-  &copy; 2025 Expeditie Kiwi
-</footer>
 
 </body>
 </html>
