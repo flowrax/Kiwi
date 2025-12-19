@@ -7,18 +7,35 @@
 
 <link rel="stylesheet" href="css/style.css">
 
-<!-- Leaflet CSS -->
-<link
-  rel="stylesheet"
-  href="https://unpkg.com/leaflet@1.9.5/dist/leaflet.css"
-/>
-
 <style>
-  #visited-map {
-    height: 500px;
-    width: 100%;
+  /* Styling voor counters en blogcards */
+  .counters {
+    display: flex;
+    gap: 2rem;
+    margin: 2rem 0;
+  }
+  .counter {
+    text-align: center;
+  }
+  #homeBlogs {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin: 2rem 0;
+  }
+  .blog-card {
+    width: calc(33.333% - 1rem);
     border: 1px solid #ccc;
-    margin-bottom: 2rem;
+    padding: 1rem;
+    cursor: pointer;
+    transition: transform 0.2s;
+  }
+  .blog-card:hover {
+    transform: scale(1.05);
+  }
+  .blog-card img {
+    width: 100%;
+    height: auto;
   }
 </style>
 </head>
@@ -74,7 +91,8 @@
   </div>
 </section>
 
-<div id="visited-map"></div>
+<!-- Laatste 3 blogs -->
+<section id="homeBlogs"></section>
 
 <footer>
   &copy; 2025 Expeditie Kiwi
@@ -83,67 +101,6 @@
 <!-- DATA -->
 <script src="data/blogs.js"></script>
 <script src="data/home-werking.js"></script>
-
-<!-- Leaflet JS -->
-<script src="https://unpkg.com/leaflet@1.9.5/dist/leaflet.js"></script>
-
-<!-- KAART -->
-<script>
-document.addEventListener("DOMContentLoaded", () => {
-
-  if (!window.L) {
-    console.error("❌ Leaflet is NIET geladen");
-    return;
-  }
-
-  if (!Array.isArray(window.blogs)) {
-    console.error("❌ blogs.js niet beschikbaar");
-    return;
-  }
-
-  const countryNameToCode = {
-    "albanië":"AL","andorra":"AD","armenië":"AM","oostenrijk":"AT","azerbeidzjan":"AZ",
-    "belgië":"BE","bosnie":"BA","bulgarije":"BG","kroatie":"HR","cyprus":"CY",
-    "tsjechie":"CZ","denemarken":"DK","estland":"EE","finland":"FI","frankrijk":"FR",
-    "georgie":"GE","duitsland":"DE","griekenland":"GR","hongarije":"HU","ijsland":"IS",
-    "ierland":"IE","italie":"IT","kazachstan":"KZ","kosovo":"XK","letland":"LV",
-    "liechtenstein":"LI","litouwen":"LT","luxemburg":"LU","malta":"MT","moldavie":"MD",
-    "monaco":"MC","montenegro":"ME","nederland":"NL","noorwegen":"NO","polen":"PL",
-    "portugal":"PT","roemenie":"RO","rusland":"RU","servie":"RS","slovenie":"SI",
-    "slowakije":"SK","spanje":"ES","zweden":"SE","zwitserland":"CH",
-    "turkije":"TR","iran":"IR","maleisie":"MY","sri lanka":"LK"
-  };
-
-  const visitedCountries = [...new Set(
-    window.blogs
-      .map(b => countryNameToCode[b.land?.toLowerCase()])
-      .filter(Boolean)
-  )];
-
-  const map = L.map("visited-map").setView([20, 0], 2);
-
-  L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-    attribution: "&copy; OpenStreetMap contributors"
-  }).addTo(map);
-
-  fetch("https://raw.githubusercontent.com/johan/world.geo.json/master/countries.geo.json")
-    .then(r => r.json())
-    .then(geojson => {
-      L.geoJson(geojson, {
-        style: f => ({
-          fillColor: visitedCountries.includes(f.id) ? "#f9a825" : "#ccc",
-          weight: 1,
-          color: "white",
-          fillOpacity: 0.7
-        }),
-        onEachFeature: (f, layer) => {
-          layer.bindTooltip(f.properties.name);
-        }
-      }).addTo(map);
-    });
-
-});
-</script>
 
 </body>
 </html>
