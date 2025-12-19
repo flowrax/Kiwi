@@ -6,8 +6,7 @@
 <title>Expeditie Kiwi</title>
 
 <link rel="stylesheet" href="css/style.css">
-<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.5/dist/leaflet.css"
- integrity="sha256-sA+e2bM4s3apz2xkY7RkZ6mQ2pFzH8jLr8a8tE/6ooc=" crossorigin=""/>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.5/dist/leaflet.css"/>
 
 <style>
   /* Zorg dat de kaart zichtbaar is */
@@ -71,16 +70,17 @@
 
 <div id="visited-map"></div>
 
-<!-- eerst blogs.js laden -->
+<!-- Scripts -->
 <script src="blogs.js"></script>
-<!-- home-werking.js regelt counters, animaties, blogcards etc -->
 <script src="home-werking.js"></script>
-<!-- Leaflet bibliotheek -->
-<script src="https://unpkg.com/leaflet@1.9.5/dist/leaflet.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.5/dist/leaflet.js"></script>
 
-<!-- KAART: alleen dit script staat inline in index.html -->
 <script>
 document.addEventListener("DOMContentLoaded", () => {
+
+  // ==============================================
+  // KAART: Leaflet kaart met bezochte landen
+  // ==============================================
   const countryNameToCode = {
     "albanië": "AL","andorra": "AD","armenië": "AM","oostenrijk": "AT","azerbeidzjan": "AZ",
     "belgië": "BE","bosnie": "BA","bulgarije": "BG","kroatie": "HR","cyprus": "CY",
@@ -141,6 +141,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
       }).addTo(map);
     });
+
 });
 </script>
 
