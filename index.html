@@ -69,15 +69,33 @@
 </section>
 
 <div id="visited-map"></div>
-
-<!-- Scripts -->
-<script src="data/blogs.js"></script>
-<script src="data/home-werking.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.5/dist/leaflet.js"></script>
-
 <!-- Inline kaartscript -->
 <script>
 document.addEventListener("DOMContentLoaded", () => {
+
+  /* ===============================
+     VEILIGHEIDSCHECKS
+     =============================== */
+
+  if (typeof L === "undefined") {
+    console.error("❌ Leaflet (L) is niet geladen. Kaart wordt niet geïnitialiseerd.");
+    return;
+  }
+
+  const mapContainer = document.getElementById("visited-map");
+  if (!mapContainer) {
+    console.error("❌ #visited-map element bestaat niet in de HTML.");
+    return;
+  }
+
+  if (!window.blogs || !Array.isArray(window.blogs)) {
+    console.error("❌ window.blogs is niet beschikbaar.");
+    return;
+  }
+
+  /* ===============================
+     LANDMAPPING
+     =============================== */
 
   const countryNameToCode = {
     "albanië": "AL","andorra": "AD","armenië": "AM","oostenrijk": "AT","azerbeidzjan": "AZ",
@@ -93,51 +111,67 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   const visitedCountries = Array.from(new Set(
-    window.blogs.map(blog => countryNameToCode[blog.land.toLowerCase()]).filter(Boolean)
+    window.blogs
+      .map(blog => countryNameToCode[blog.land?.toLowerCase()])
+      .filter(Boolean)
   ));
 
-  const map = L.map('visited-map').setView([20, 0], 2);
+  console.log("🌍 Bezochte landen (ISO):", visitedCountries);
 
-  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    attribution: '&copy; OpenStreetMap contributors'
+  /* ===============================
+     KAART INITIALISEREN
+     =============================== */
+
+  const map = L.map("visited-map").setView([20, 0], 2);
+
+  L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+    attribution: "&copy; OpenStreetMap contributors"
   }).addTo(map);
 
-  fetch('https://raw.githubusercontent.com/johan/world.geo.json/master/countries.geo.json')
-    .then(res => res.json())
+  /* ===============================
+     GEOJSON LADEN
+     =============================== */
+
+  fetch("https://raw.githubusercontent.com/johan/world.geo.json/master/countries.geo.json")
+    .then(res => {
+      if (!res.ok) throw new Error("GeoJSON kon niet worden geladen");
+      return res.json();
+    })
     .then(geojson => {
+
       function style(feature) {
         return {
-          fillColor: visitedCountries.includes(feature.id) ? '#f9a825' : '#ccc',
+          fillColor: visitedCountries.includes(feature.id) ? "#f9a825" : "#ccc",
           weight: 1,
           opacity: 1,
-          color: 'white',
+          color: "white",
           fillOpacity: 0.7
         };
       }
 
       L.geoJson(geojson, {
-        style: style,
-        onEachFeature: function(feature, layer) {
+        style,
+        onEachFeature: (feature, layer) => {
           layer.bindTooltip(feature.properties.name);
 
-          layer.on('click', function() {
+          layer.on("click", () => {
             const blogsForCountry = window.blogs.filter(
-              blog => countryNameToCode[blog.land.toLowerCase()] === feature.id
+              blog => countryNameToCode[blog.land?.toLowerCase()] === feature.id
             );
 
-            let popupContent = `<strong>${feature.properties.name}</strong><br>`;
-            if (blogsForCountry.length > 0) {
-              blogsForCountry.forEach(blog => {
-                popupContent += `${blog.title}<br>`;
-              });
-            } else {
-              popupContent += "Geen blogs beschikbaar";
-            }
+            let popup = `<strong>${feature.properties.name}</strong><br>`;
+            popup += blogsForCountry.length
+              ? blogsForCountry.map(b => b.title).join("<br>")
+              : "Geen blogs beschikbaar";
 
-            layer.bindPopup(popupContent).openPopup();
+            layer.bindPopup(popup).openPopup();
           });
         }
       }).addTo(map);
+
+    })
+    .catch(err => {
+      console.error("❌ Fout bij laden GeoJSON:", err);
     });
 
 });
