@@ -11,7 +11,7 @@
 
 <style>
   /* Zorg dat de kaart zichtbaar is */
-  #map {
+  #visited-map {
     height: 500px;
     width: 100%;
     border: 1px solid #ccc;
@@ -69,22 +69,94 @@
   </div>
 </section>
 
-<div id="visited-map" style="height: 500px; width: 100%;"></div>
+<div id="visited-map"></div>
 
-<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.5/dist/leaflet.css"/>
+<script src="blogs.js"></script>
 <script src="https://unpkg.com/leaflet@1.9.5/dist/leaflet.js"></script>
 
-<!-- eerst blogs.js laden -->
-<script src="blogs.js"></script>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
 
-<!-- daarna route.js -->
-<script src="route.js"></script>
+  // Mapping landnamen (zoals in blogs.js) naar ISO codes
+  const countryNameToCode = {
+    "albanië": "AL","andorra": "AD","armenië": "AM","oostenrijk": "AT","azerbeidzjan": "AZ",
+    "belgië": "BE","bosnie": "BA","bulgarije": "BG","kroatie": "HR","cyprus": "CY",
+    "tsjechie": "CZ","denemarken": "DK","estland": "EE","finland": "FI","frankrijk": "FR",
+    "georgie": "GE","duitsland": "DE","griekenland": "GR","hongarije": "HU","ijsland": "IS",
+    "ierland": "IE","italie": "IT","kazachstan": "KZ","kosovo": "XK","letland": "LV",
+    "liechtenstein": "LI","litouwen": "LT","luxemburg": "LU","malta": "MT","moldavie": "MD",
+    "monaco": "MC","montenegro": "ME","nederland": "NL","noorwegen": "NO","polen": "PL",
+    "portugal": "PT","roemenie": "RO","rusland": "RU","servie": "RS","slovenie": "SI",
+    "slowakije": "SK","spanje": "ES","zweden": "SE","zwitserland": "CH",
+    "turkije": "TR","iran": "IR","maleisie": "MY","sri lanka": "LK"
+  };
 
+  // Unieke bezochte landen uit blogs.js
+  const visitedCountries = Array.from(new Set(
+    window.blogs.map(blog => countryNameToCode[blog.land.toLowerCase()]).filter(Boolean)
+  ));
+
+  // Counters updaten
+  const counterBlogs = document.querySelector("#counterBlogs .count");
+  const counterLanden = document.querySelector("#counterLanden .count");
+
+  if(counterBlogs) counterBlogs.textContent = window.blogs.length;
+  if(counterLanden) counterLanden.textContent = visitedCountries.length;
+
+  // Init Leaflet-kaart
+  const map = L.map('visited-map').setView([20, 0], 2);
+
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; OpenStreetMap contributors'
+  }).addTo(map);
+
+  // Laad GeoJSON en style landen
+  fetch('https://raw.githubusercontent.com/johan/world.geo.json/master/countries.geo.json')
+    .then(res => res.json())
+    .then(geojson => {
+
+      function style(feature) {
+        return {
+          fillColor: visitedCountries.includes(feature.id) ? '#f9a825' : '#ccc',
+          weight: 1,
+          opacity: 1,
+          color: 'white',
+          fillOpacity: 0.7
+        };
+      }
+
+      L.geoJson(geojson, {
+        style: style,
+        onEachFeature: function(feature, layer) {
+
+          layer.bindTooltip(feature.properties.name);
+
+          layer.on('click', function() {
+            const blogsForCountry = window.blogs.filter(
+              blog => countryNameToCode[blog.land.toLowerCase()] === feature.id
+            );
+
+            let popupContent = `<strong>${feature.properties.name}</strong><br>`;
+            if (blogsForCountry.length > 0) {
+              blogsForCountry.forEach(blog => {
+                popupContent += `${blog.title}<br>`;
+              });
+            } else {
+              popupContent += "Geen blogs beschikbaar";
+            }
+
+            layer.bindPopup(popupContent).openPopup();
+          });
+        }
+      }).addTo(map);
+    });
+
+});
+</script>
 
 <footer>
   &copy; 2025 Expeditie Kiwi
 </footer>
-
 
 </body>
 </html>
